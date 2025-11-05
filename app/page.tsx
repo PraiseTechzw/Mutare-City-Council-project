@@ -23,8 +23,10 @@ export default function HomePage() {
                 <Link href="/signup">Sign Up</Link>
               </Button>
               <Button asChild variant="outline" size="sm" className="text-xs sm:text-sm">
-                <Link href="/login" className="hidden sm:inline">Customer Login</Link>
-                <Link href="/login" className="sm:hidden">Login</Link>
+                <Link href="/login">
+                  <span className="hidden sm:inline">Customer Login</span>
+                  <span className="sm:hidden">Login</span>
+                </Link>
               </Button>
               <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
                 <Link href="/login/cashier">
