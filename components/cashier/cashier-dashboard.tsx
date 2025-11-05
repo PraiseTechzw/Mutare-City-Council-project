@@ -121,114 +121,120 @@ export function CashierDashboard({
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
-      <header className="border-b border-slate-700 bg-slate-800/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center">
-              <Shield className="w-6 h-6 text-white" />
+      <header className="border-b border-slate-700 bg-slate-800/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Shield className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-xl font-bold text-white truncate">Mutare City Council</h1>
+                <p className="text-xs text-gray-400 hidden sm:block">Cashier Portal</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-white">Mutare City Council</h1>
-              <p className="text-xs text-gray-400">Cashier Portal</p>
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="text-right hidden sm:block">
+                <p className="text-xs sm:text-sm text-gray-400">Logged in as</p>
+                <p className="text-xs sm:text-sm font-semibold text-white truncate max-w-[120px]">{profile.full_name}</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogout}
+                className="border-slate-600 text-white hover:bg-slate-700 bg-transparent flex-shrink-0"
+              >
+                <LogOut className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Logout</span>
+              </Button>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="text-right">
-              <p className="text-sm text-gray-400">Logged in as</p>
-              <p className="text-sm font-semibold text-white">{profile.full_name}</p>
-            </div>
-            <Button
-              variant="outline"
-              onClick={handleLogout}
-              className="border-slate-600 text-white hover:bg-slate-700 bg-transparent"
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </Button>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Stats Cards */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <Card className="p-6 bg-slate-800 border-slate-700">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-emerald-900/50 rounded-xl flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-emerald-400" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <Card className="p-4 sm:p-6 bg-slate-800 border-slate-700 hover:border-emerald-600 transition-colors">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-900/50 rounded-xl flex items-center justify-center">
+                <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
               </div>
             </div>
-            <p className="text-sm text-gray-400 mb-1">Total Revenue</p>
-            <p className="text-3xl font-bold text-white">${stats.totalRevenue.toFixed(2)}</p>
-            <div className="flex items-center gap-1 mt-2 text-emerald-400 text-sm">
-              <TrendingUp className="w-4 h-4" />
+            <p className="text-xs sm:text-sm text-gray-400 mb-1">Total Revenue</p>
+            <p className="text-2xl sm:text-3xl font-bold text-white">${stats.totalRevenue.toFixed(2)}</p>
+            <div className="flex items-center gap-1 mt-2 text-emerald-400 text-xs sm:text-sm">
+              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>All time</span>
             </div>
           </Card>
 
-          <Card className="p-6 bg-slate-800 border-slate-700">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-red-900/50 rounded-xl flex items-center justify-center">
-                <AlertCircle className="w-6 h-6 text-red-400" />
+          <Card className="p-4 sm:p-6 bg-slate-800 border-slate-700 hover:border-red-600 transition-colors">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-900/50 rounded-xl flex items-center justify-center">
+                <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" />
               </div>
             </div>
-            <p className="text-sm text-gray-400 mb-1">Outstanding</p>
-            <p className="text-3xl font-bold text-white">${stats.totalOutstanding.toFixed(2)}</p>
-            <p className="text-sm text-gray-500 mt-2">{stats.unpaidBillsCount} unpaid bills</p>
+            <p className="text-xs sm:text-sm text-gray-400 mb-1">Outstanding</p>
+            <p className="text-2xl sm:text-3xl font-bold text-white">${stats.totalOutstanding.toFixed(2)}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">{stats.unpaidBillsCount} unpaid bills</p>
           </Card>
 
-          <Card className="p-6 bg-slate-800 border-slate-700">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-blue-900/50 rounded-xl flex items-center justify-center">
-                <Users className="w-6 h-6 text-blue-400" />
+          <Card className="p-4 sm:p-6 bg-slate-800 border-slate-700 hover:border-blue-600 transition-colors">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-900/50 rounded-xl flex items-center justify-center">
+                <Users className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
               </div>
             </div>
-            <p className="text-sm text-gray-400 mb-1">Total Customers</p>
-            <p className="text-3xl font-bold text-white">{stats.totalCustomers}</p>
-            <p className="text-sm text-gray-500 mt-2">Active accounts</p>
+            <p className="text-xs sm:text-sm text-gray-400 mb-1">Total Customers</p>
+            <p className="text-2xl sm:text-3xl font-bold text-white">{stats.totalCustomers}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">Active accounts</p>
           </Card>
 
-          <Card className="p-6 bg-slate-800 border-slate-700">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center">
-                <FileText className="w-6 h-6 text-purple-400" />
+          <Card className="p-4 sm:p-6 bg-slate-800 border-slate-700 hover:border-purple-600 transition-colors sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-900/50 rounded-xl flex items-center justify-center">
+                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
               </div>
             </div>
-            <p className="text-sm text-gray-400 mb-1">Total Bills</p>
-            <p className="text-3xl font-bold text-white">{bills.length}</p>
-            <p className="text-sm text-gray-500 mt-2">All time</p>
+            <p className="text-xs sm:text-sm text-gray-400 mb-1">Total Bills</p>
+            <p className="text-2xl sm:text-3xl font-bold text-white">{bills.length}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">All time</p>
           </Card>
         </div>
 
         {/* Main Content Tabs */}
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-slate-800 border-slate-700 shadow-lg">
           <Tabs defaultValue="bills" className="w-full">
-            <div className="border-b border-slate-700 px-6 pt-6">
-              <TabsList className="bg-slate-900">
-                <TabsTrigger value="bills">Bills</TabsTrigger>
-                <TabsTrigger value="customers">Customers</TabsTrigger>
-                <TabsTrigger value="payments">Payments</TabsTrigger>
-                <TabsTrigger value="activity">Activity Log</TabsTrigger>
+            <div className="border-b border-slate-700 px-4 sm:px-6 pt-4 sm:pt-6 overflow-x-auto">
+              <TabsList className="bg-slate-900 w-full sm:w-auto">
+                <TabsTrigger value="bills" className="text-xs sm:text-sm">Bills</TabsTrigger>
+                <TabsTrigger value="customers" className="text-xs sm:text-sm">Customers</TabsTrigger>
+                <TabsTrigger value="payments" className="text-xs sm:text-sm">Payments</TabsTrigger>
+                <TabsTrigger value="activity" className="text-xs sm:text-sm">Activity</TabsTrigger>
               </TabsList>
             </div>
 
-            <TabsContent value="bills" className="p-6">
-              <div className="flex items-center justify-between mb-6">
+            <TabsContent value="bills" className="p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-1">Water Bills</h3>
-                  <p className="text-sm text-gray-400">Manage all customer water bills</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">Water Bills</h3>
+                  <p className="text-xs sm:text-sm text-gray-400">Manage all customer water bills</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Button
                     onClick={() => setShowGenerateMonthlyBills(true)}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                    size="sm"
                   >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Generate Monthly Bills
+                    <Calendar className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Generate Monthly Bills</span>
+                    <span className="sm:hidden">Generate Bills</span>
                   </Button>
-                  <Button onClick={() => setShowCreateBill(true)} className="bg-emerald-600 hover:bg-emerald-700">
-                    <FileText className="w-4 h-4 mr-2" />
-                    Create New Bill
+                  <Button onClick={() => setShowCreateBill(true)} className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto" size="sm">
+                    <FileText className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Create New Bill</span>
+                    <span className="sm:hidden">New Bill</span>
                   </Button>
                 </div>
               </div>
@@ -239,35 +245,35 @@ export function CashierDashboard({
               <BillsTable bills={bills} />
             </TabsContent>
 
-            <TabsContent value="customers" className="p-6">
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-white mb-1">Customers</h3>
-                <p className="text-sm text-gray-400">View and manage customer accounts</p>
+            <TabsContent value="customers" className="p-4 sm:p-6">
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-1">Customers</h3>
+                <p className="text-xs sm:text-sm text-gray-400">View and manage customer accounts</p>
               </div>
               <CustomersTable customers={customers} />
             </TabsContent>
 
-            <TabsContent value="payments" className="p-6">
-              <div className="flex items-center justify-between mb-6">
+            <TabsContent value="payments" className="p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-1">All Payments</h3>
-                  <p className="text-sm text-gray-400">View payment history and transactions</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">All Payments</h3>
+                  <p className="text-xs sm:text-sm text-gray-400">View payment history and transactions</p>
                 </div>
-                <Button onClick={() => setShowProcessPayment(true)} className="bg-emerald-600 hover:bg-emerald-700">
-                  <DollarSign className="w-4 h-4 mr-2" />
+                <Button onClick={() => setShowProcessPayment(true)} className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto" size="sm">
+                  <DollarSign className="w-4 h-4 sm:mr-2" />
                   Process Payment
                 </Button>
               </div>
               <PaymentsTable payments={payments} />
             </TabsContent>
 
-            <TabsContent value="activity" className="p-6">
-              <div className="mb-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <Activity className="w-5 h-5 text-emerald-400" />
-                  <h3 className="text-xl font-bold text-white">Activity Log</h3>
+            <TabsContent value="activity" className="p-4 sm:p-6">
+              <div className="mb-4 sm:mb-6">
+                <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                  <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+                  <h3 className="text-lg sm:text-xl font-bold text-white">Activity Log</h3>
                 </div>
-                <p className="text-sm text-gray-400">Recent system activity and transactions</p>
+                <p className="text-xs sm:text-sm text-gray-400">Recent system activity and transactions</p>
               </div>
               <ActivityLogTable activities={activities} />
             </TabsContent>

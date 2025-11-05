@@ -111,53 +111,55 @@ export function CustomerDashboard({
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
       {/* Header */}
-      <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <Droplets className="w-6 h-6 text-white" />
+      <header className="border-b border-gray-200 bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Droplets className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-xl font-bold text-gray-900 truncate">Mutare City Council</h1>
+                <p className="text-xs text-gray-600 hidden sm:block">Customer Portal</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">Mutare City Council</h1>
-              <p className="text-xs text-gray-600">Customer Portal</p>
-            </div>
+            <Button variant="outline" size="sm" onClick={handleLogout} className="flex-shrink-0">
+              <LogOut className="w-4 h-4 sm:mr-2" />
+              <span className="hidden sm:inline">Logout</span>
+            </Button>
           </div>
-          <Button variant="outline" onClick={handleLogout}>
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
-          </Button>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, {profile.full_name}</h2>
-          <p className="text-gray-600">Manage your water bills and payments</p>
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Welcome back, {profile.full_name}</h2>
+          <p className="text-sm sm:text-base text-gray-600">Manage your water bills and payments</p>
         </div>
 
         {/* Account Info Card */}
-        <Card className="p-6 mb-8 bg-gradient-to-br from-blue-600 to-cyan-600 text-white border-0">
-          <div className="grid md:grid-cols-2 gap-6">
+        <Card className="p-4 sm:p-6 mb-6 sm:mb-8 bg-gradient-to-br from-blue-600 to-cyan-600 text-white border-0 shadow-lg">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <p className="text-blue-100 text-sm mb-1">Account Number</p>
-              <p className="text-2xl font-bold">{profile.account_number || "N/A"}</p>
+              <p className="text-blue-100 text-xs sm:text-sm mb-1">Account Number</p>
+              <p className="text-xl sm:text-2xl font-bold break-all">{profile.account_number || "N/A"}</p>
             </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm">
-                <User className="w-4 h-4" />
-                <span>{profile.email}</span>
+            <div className="space-y-2 sm:space-y-2">
+              <div className="flex items-center gap-2 text-xs sm:text-sm">
+                <User className="w-4 h-4 flex-shrink-0" />
+                <span className="truncate">{profile.email}</span>
               </div>
               {profile.phone_number && (
-                <div className="flex items-center gap-2 text-sm">
-                  <Phone className="w-4 h-4" />
-                  <span>{profile.phone_number}</span>
+                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <span className="truncate">{profile.phone_number}</span>
                 </div>
               )}
               {profile.address && (
-                <div className="flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4" />
-                  <span>{profile.address}</span>
+                <div className="flex items-start gap-2 text-xs sm:text-sm">
+                  <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <span className="line-clamp-2">{profile.address}</span>
                 </div>
               )}
             </div>
@@ -165,92 +167,94 @@ export function CustomerDashboard({
         </Card>
 
         {/* Stats Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-red-600" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <Card className="p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-1">Total Outstanding</p>
-            <p className="text-3xl font-bold text-gray-900">${totalOutstanding.toFixed(2)}</p>
-            <p className="text-sm text-gray-500 mt-2">{unpaidBills.length} unpaid bills</p>
+            <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Outstanding</p>
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900">${totalOutstanding.toFixed(2)}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">{unpaidBills.length} unpaid bills</p>
           </Card>
 
-          <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                <FileText className="w-6 h-6 text-blue-600" />
+          <Card className="p-4 sm:p-6 hover:shadow-lg transition-shadow">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-1">Total Bills</p>
-            <p className="text-3xl font-bold text-gray-900">{bills.length}</p>
-            <p className="text-sm text-gray-500 mt-2">All time</p>
+            <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Bills</p>
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900">{bills.length}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">All time</p>
           </Card>
 
-          <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-emerald-600" />
+          <Card className="p-4 sm:p-6 hover:shadow-lg transition-shadow sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-1">Last Payment</p>
-            <p className="text-3xl font-bold text-gray-900">${recentPayments[0]?.amount.toFixed(2) || "0.00"}</p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-xs sm:text-sm text-gray-600 mb-1">Last Payment</p>
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900">${recentPayments[0]?.amount.toFixed(2) || "0.00"}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">
               {recentPayments[0] ? new Date(recentPayments[0].created_at).toLocaleDateString() : "No payments yet"}
             </p>
           </Card>
         </div>
 
         {/* Bills Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-gray-900">Your Water Bills</h3>
+        <div className="mb-6 sm:mb-8">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Your Water Bills</h3>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {bills.length === 0 ? (
-              <Card className="p-12 text-center">
-                <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">No bills found</p>
+              <Card className="p-8 sm:p-12 text-center">
+                <FileText className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-sm sm:text-base text-gray-600">No bills found</p>
               </Card>
             ) : (
               bills.map((bill) => (
-                <Card key={bill.id} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h4 className="text-lg font-semibold text-gray-900">{bill.billing_period}</h4>
-                        <Badge className={getStatusColor(bill.status)}>{bill.status.toUpperCase()}</Badge>
-                      </div>
+                <Card key={bill.id} className="p-4 sm:p-6 hover:shadow-lg transition-shadow border-2 hover:border-blue-200">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+                          <h4 className="text-base sm:text-lg font-semibold text-gray-900">{bill.billing_period}</h4>
+                          <Badge className={getStatusColor(bill.status)}>{bill.status.toUpperCase()}</Badge>
+                        </div>
 
-                      <div className="grid md:grid-cols-4 gap-4 text-sm">
-                        <div>
-                          <p className="text-gray-500">Consumption</p>
-                          <p className="font-semibold text-gray-900">{bill.consumption.toFixed(2)} m³</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm">
+                          <div>
+                            <p className="text-gray-500 mb-1">Consumption</p>
+                            <p className="font-semibold text-gray-900">{bill.consumption.toFixed(2)} m³</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500 mb-1">Amount Due</p>
+                            <p className="font-semibold text-gray-900">${bill.amount_due.toFixed(2)}</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500 mb-1">Amount Paid</p>
+                            <p className="font-semibold text-emerald-600">${bill.amount_paid.toFixed(2)}</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500 mb-1">Balance</p>
+                            <p className="font-semibold text-red-600">${bill.balance.toFixed(2)}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-gray-500">Amount Due</p>
-                          <p className="font-semibold text-gray-900">${bill.amount_due.toFixed(2)}</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-500">Amount Paid</p>
-                          <p className="font-semibold text-emerald-600">${bill.amount_paid.toFixed(2)}</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-500">Balance</p>
-                          <p className="font-semibold text-red-600">${bill.balance.toFixed(2)}</p>
-                        </div>
-                      </div>
 
-                      <div className="flex items-center gap-2 mt-3 text-sm text-gray-600">
-                        <Calendar className="w-4 h-4" />
-                        <span>Due: {new Date(bill.due_date).toLocaleDateString()}</span>
+                        <div className="flex items-center gap-2 mt-3 text-xs sm:text-sm text-gray-600">
+                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span>Due: {new Date(bill.due_date).toLocaleDateString()}</span>
+                        </div>
                       </div>
                     </div>
 
                     {bill.balance > 0 && (
-                      <Button onClick={() => handlePayBill(bill)} className="md:w-auto w-full">
+                      <Button onClick={() => handlePayBill(bill)} className="w-full sm:w-auto sm:self-end" size="sm">
                         <CreditCard className="w-4 h-4 mr-2" />
                         Pay Now
                       </Button>
@@ -265,32 +269,32 @@ export function CustomerDashboard({
         {/* Payments History */}
         {recentPayments.length > 0 && (
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Payment History</h3>
-            <Card className="p-6">
-              <div className="space-y-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Payment History</h3>
+            <Card className="p-4 sm:p-6">
+              <div className="space-y-3 sm:space-y-4">
                 {recentPayments.map((payment) => (
                   <div
                     key={payment.id}
-                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors rounded-lg px-2"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors rounded-lg px-2 sm:px-3"
                   >
-                    <div className="flex items-center gap-4 flex-1">
-                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <Receipt className="w-5 h-5 text-emerald-600" />
                       </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-gray-900">{payment.water_bills.billing_period}</p>
-                        <p className="text-sm text-gray-500">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm sm:text-base text-gray-900 truncate">{payment.water_bills.billing_period}</p>
+                        <p className="text-xs sm:text-sm text-gray-500">
                           {new Date(payment.created_at).toLocaleDateString()} • {payment.payment_method.replace("_", " ")}
                         </p>
                         {payment.payment_reference && (
-                          <p className="text-xs text-gray-400 mt-1">Ref: {payment.payment_reference}</p>
+                          <p className="text-xs text-gray-400 mt-1 truncate">Ref: {payment.payment_reference}</p>
                         )}
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        <p className="font-semibold text-gray-900">${payment.amount.toFixed(2)}</p>
-                        <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200">
+                    <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4">
+                      <div className="text-left sm:text-right">
+                        <p className="font-semibold text-sm sm:text-base text-gray-900">${payment.amount.toFixed(2)}</p>
+                        <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-xs">
                           {payment.payment_status}
                         </Badge>
                       </div>
@@ -301,9 +305,10 @@ export function CustomerDashboard({
                           setSelectedPayment(payment)
                           setShowReceiptDialog(true)
                         }}
+                        className="flex-shrink-0"
                       >
-                        <Receipt className="w-4 h-4 mr-2" />
-                        Receipt
+                        <Receipt className="w-4 h-4 sm:mr-2" />
+                        <span className="hidden sm:inline">Receipt</span>
                       </Button>
                     </div>
                   </div>

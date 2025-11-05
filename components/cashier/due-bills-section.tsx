@@ -62,12 +62,12 @@ export function DueBillsSection({ bills }: { bills: Bill[] }) {
 
   if (overdueBills.length === 0 && dueSoonBills.length === 0) {
     return (
-      <Card className="bg-slate-800 border-slate-700 p-6 mb-6">
-        <div className="flex items-center gap-3">
-          <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+      <Card className="bg-slate-800 border-slate-700 p-4 sm:p-6 mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 flex-shrink-0" />
           <div>
-            <h3 className="text-lg font-semibold text-white">No Due Bills</h3>
-            <p className="text-sm text-gray-400">All bills are up to date!</p>
+            <h3 className="text-base sm:text-lg font-semibold text-white">No Due Bills</h3>
+            <p className="text-xs sm:text-sm text-gray-400">All bills are up to date!</p>
           </div>
         </div>
       </Card>
@@ -75,48 +75,48 @@ export function DueBillsSection({ bills }: { bills: Bill[] }) {
   }
 
   return (
-    <div className="space-y-4 mb-6">
+    <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
       {/* Overdue Bills */}
       {overdueBills.length > 0 && (
         <Card className="bg-red-900/20 border-red-700">
-          <div className="p-4 border-b border-red-700">
+          <div className="p-3 sm:p-4 border-b border-red-700">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 text-red-400" />
-                <div>
-                  <h3 className="text-lg font-semibold text-white">Overdue Bills</h3>
-                  <p className="text-sm text-red-300">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold text-white">Overdue Bills</h3>
+                  <p className="text-xs sm:text-sm text-red-300">
                     {overdueBills.length} bill{overdueBills.length !== 1 ? "s" : ""} • Total: ${totalOverdue.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="p-4 space-y-3 max-h-96 overflow-y-auto">
+          <div className="p-3 sm:p-4 space-y-2 sm:space-y-3 max-h-96 overflow-y-auto">
             {overdueBills.map((bill) => {
               const daysOverdue = getDaysOverdue(bill.due_date)
               return (
                 <div
                   key={bill.id}
-                  className="bg-slate-900 rounded-lg p-4 border border-red-700/50 hover:border-red-600 transition-colors"
+                  className="bg-slate-900 rounded-lg p-3 sm:p-4 border border-red-700/50 hover:border-red-600 transition-colors"
                 >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <h4 className="text-base font-semibold text-white mb-1">{bill.profiles.full_name}</h4>
-                      <p className="text-sm text-gray-400">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm sm:text-base font-semibold text-white mb-1 truncate">{bill.profiles.full_name}</h4>
+                      <p className="text-xs sm:text-sm text-gray-400">
                         {bill.billing_period} • {bill.profiles.account_number || "No Account"}
                       </p>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Badge className="bg-red-900/50 text-red-300 border-red-700">
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <Badge className="bg-red-900/50 text-red-300 border-red-700 text-xs">
                           {daysOverdue} day{daysOverdue !== 1 ? "s" : ""} overdue
                         </Badge>
-                        <Badge className="bg-amber-900/50 text-amber-300 border-amber-700">
+                        <Badge className="bg-amber-900/50 text-amber-300 border-amber-700 text-xs">
                           {bill.status.toUpperCase()}
                         </Badge>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-xl font-bold text-red-400">${bill.balance.toFixed(2)}</p>
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-lg sm:text-xl font-bold text-red-400">${bill.balance.toFixed(2)}</p>
                       <p className="text-xs text-gray-400">Balance</p>
                     </div>
                   </div>
@@ -130,44 +130,44 @@ export function DueBillsSection({ bills }: { bills: Bill[] }) {
       {/* Due Soon Bills */}
       {dueSoonBills.length > 0 && (
         <Card className="bg-amber-900/20 border-amber-700">
-          <div className="p-4 border-b border-amber-700">
+          <div className="p-3 sm:p-4 border-b border-amber-700">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-amber-400" />
-                <div>
-                  <h3 className="text-lg font-semibold text-white">Due Soon (Next 7 Days)</h3>
-                  <p className="text-sm text-amber-300">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold text-white">Due Soon (Next 7 Days)</h3>
+                  <p className="text-xs sm:text-sm text-amber-300">
                     {dueSoonBills.length} bill{dueSoonBills.length !== 1 ? "s" : ""} • Total: ${totalDueSoon.toFixed(2)}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="p-4 space-y-3 max-h-96 overflow-y-auto">
+          <div className="p-3 sm:p-4 space-y-2 sm:space-y-3 max-h-96 overflow-y-auto">
             {dueSoonBills.map((bill) => {
               const daysUntilDue = getDaysUntilDue(bill.due_date)
               return (
                 <div
                   key={bill.id}
-                  className="bg-slate-900 rounded-lg p-4 border border-amber-700/50 hover:border-amber-600 transition-colors"
+                  className="bg-slate-900 rounded-lg p-3 sm:p-4 border border-amber-700/50 hover:border-amber-600 transition-colors"
                 >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <h4 className="text-base font-semibold text-white mb-1">{bill.profiles.full_name}</h4>
-                      <p className="text-sm text-gray-400">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm sm:text-base font-semibold text-white mb-1 truncate">{bill.profiles.full_name}</h4>
+                      <p className="text-xs sm:text-sm text-gray-400">
                         {bill.billing_period} • {bill.profiles.account_number || "No Account"}
                       </p>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Badge className="bg-amber-900/50 text-amber-300 border-amber-700">
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <Badge className="bg-amber-900/50 text-amber-300 border-amber-700 text-xs">
                           Due in {daysUntilDue} day{daysUntilDue !== 1 ? "s" : ""}
                         </Badge>
-                        <Badge className="bg-blue-900/50 text-blue-300 border-blue-700">
+                        <Badge className="bg-blue-900/50 text-blue-300 border-blue-700 text-xs">
                           {bill.status.toUpperCase()}
                         </Badge>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-xl font-bold text-amber-400">${bill.balance.toFixed(2)}</p>
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-lg sm:text-xl font-bold text-amber-400">${bill.balance.toFixed(2)}</p>
                       <p className="text-xs text-gray-400">Balance</p>
                     </div>
                   </div>
