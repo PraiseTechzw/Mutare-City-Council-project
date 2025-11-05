@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,7 +10,7 @@ import { Loader2, CheckCircle2, XCircle, Mail } from "lucide-react"
 import { toast } from "sonner"
 import Link from "next/link"
 
-export default function ConfirmEmailPage() {
+function ConfirmEmailContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading")
@@ -204,6 +204,28 @@ export default function ConfirmEmailPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function ConfirmEmailPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <div className="mx-auto mb-4">
+                <Loader2 className="w-16 h-16 text-blue-600 animate-spin mx-auto" />
+              </div>
+              <CardTitle className="text-2xl">Confirming Your Email</CardTitle>
+              <CardDescription className="mt-2">Please wait...</CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      }
+    >
+      <ConfirmEmailContent />
+    </Suspense>
   )
 }
 
