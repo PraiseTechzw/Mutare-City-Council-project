@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: 'Mutare City Council - Water Bill Payment Portal',
   description: 'Online payment portal for Mutare City Council water bills',
   generator: 'Next.js',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 }
 
 export default function RootLayout({

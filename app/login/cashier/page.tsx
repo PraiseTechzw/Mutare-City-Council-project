@@ -1,5 +1,6 @@
 import { CashierLoginForm } from "@/components/auth/cashier-login-form"
 import { Shield } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function CashierLoginPage() {
@@ -7,8 +8,14 @@ export default function CashierLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-600 rounded-2xl mb-4">
-            <Shield className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32 rounded-2xl mb-4 overflow-hidden bg-white/10 backdrop-blur-sm">
+            <Image 
+              src="/logo.png" 
+              alt="Mutare City Council Logo" 
+              width={128} 
+              height={128} 
+              className="w-full h-full object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Mutare City Council</h1>
           <p className="text-gray-400">Cashier Portal</p>

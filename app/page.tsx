@@ -26,6 +26,7 @@ import {
   Linkedin
 } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState, useRef } from "react"
 
 export default function HomePage() {
@@ -118,8 +119,14 @@ export default function HomePage() {
             <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-400 rounded-xl opacity-0 group-hover:opacity-20 blur-md transition-all duration-300 group-hover:scale-125"></div>
-                <div className="relative w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl group-hover:shadow-blue-500/40">
-                  <Droplets className="w-4 h-4 sm:w-6 sm:h-6 text-white transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl group-hover:shadow-blue-500/40 overflow-hidden">
+                  <Image 
+                    src="/logo.png" 
+                    alt="Mutare City Council Logo" 
+                    width={64} 
+                    height={64} 
+                    className="w-full h-full object-contain transition-transform group-hover:scale-110 group-hover:rotate-12"
+                  />
                 </div>
               </div>
               <div className="min-w-0">
@@ -638,8 +645,14 @@ export default function HomePage() {
             {/* Brand Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/25 hover:scale-110 transition-transform duration-300">
-                  <Droplets className="w-7 h-7 text-white" />
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/25 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                  <Image 
+                    src="/logo.png" 
+                    alt="Mutare City Council Logo" 
+                    width={64} 
+                    height={64} 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-gray-900">Mutare City Council</h4>

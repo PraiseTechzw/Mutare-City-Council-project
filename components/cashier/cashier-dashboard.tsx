@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Shield, LogOut, DollarSign, Users, FileText, AlertCircle, TrendingUp, Activity, Calendar } from "lucide-react"
+import Image from "next/image"
 import { CreateBillDialog } from "./create-bill-dialog"
 import { GenerateMonthlyBillsDialog } from "./generate-monthly-bills-dialog"
 import { ProcessPaymentDialog } from "./process-payment-dialog"
@@ -125,8 +126,14 @@ export function CashierDashboard({
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Shield className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/10 backdrop-blur-sm">
+                <Image 
+                  src="/logo.png" 
+                  alt="Mutare City Council Logo" 
+                  width={64} 
+                  height={64} 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="min-w-0">
                 <h1 className="text-base sm:text-xl font-bold text-white truncate">Mutare City Council</h1>
